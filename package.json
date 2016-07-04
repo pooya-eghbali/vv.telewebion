@@ -1,0 +1,7 @@
+{
+  "name": "Vv Telewebion",
+  "description": "Iranian Live TV",
+  "version": "0.0.1",
+  "icon": "tw.jpg",
+  "entry": "index.js"
+}
