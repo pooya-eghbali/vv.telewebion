@@ -55,7 +55,8 @@ getPrevious = function(previous){
     addon         : 'vv.pouya.telewebion',
     constructor   : constructor,
     onAfterCreate : onSubCreate,
-    previous      : previous
+    previous      : previous,
+    rtl           : true,
   }
   return page;
 }
@@ -74,7 +75,8 @@ onMainCreate = function(){
       addon         : 'vv.pouya.telewebion',
       constructor   : constructor,
       onAfterCreate : onSubCreate,
-      previous      : previous
+      previous      : previous,
+      rtl           : true,
     }
     vv.page(page);
   })
@@ -100,7 +102,8 @@ addon.main = {
   title         : 'شبکه های ایران',
   addon         : 'vv.pouya.telewebion',
   constructor   : constructor,
-  onAfterCreate : onMainCreate
+  onAfterCreate : onMainCreate,
+  rtl           : true,
 }
 
 vv.page(addon.main);
