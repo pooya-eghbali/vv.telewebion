@@ -50,12 +50,12 @@ getPrevious = function(previous){
   }
   var previous = getPrevious(sub.previous);
   var page = {
-    id          : 'tele-sub',
-    title       : sub.title,
-    addon       : 'vv.pouya.telewebion',
-    constructor : constructor,
-    onCreate    : onSubCreate,
-    previous    : previous
+    id            : 'tele-sub',
+    title         : sub.title,
+    addon         : 'vv.pouya.telewebion',
+    constructor   : constructor,
+    onAfterCreate : onSubCreate,
+    previous      : previous
   }
   return page;
 }
@@ -69,12 +69,12 @@ onMainCreate = function(){
     }
     var previous = getPrevious(sub.previous);
     var page = {
-      id          : 'tele-sub',
-      title       : sub.title,
-      addon       : 'vv.pouya.telewebion',
-      constructor : constructor,
-      onCreate    : onSubCreate,
-      previous    : previous
+      id            : 'tele-sub',
+      title         : sub.title,
+      addon         : 'vv.pouya.telewebion',
+      constructor   : constructor,
+      onAfterCreate : onSubCreate,
+      previous      : previous
     }
     vv.page(page);
   })
@@ -96,11 +96,11 @@ onSubCreate = function(){
 
 addon = {}
 addon.main = {
-  id          : 'tele-main',
-  title       : 'شبکه های ایران',
-  addon       : 'vv.pouya.telewebion',
-  constructor : constructor,
-  onCreate    : onMainCreate
+  id            : 'tele-main',
+  title         : 'شبکه های ایران',
+  addon         : 'vv.pouya.telewebion',
+  constructor   : constructor,
+  onAfterCreate : onMainCreate
 }
 
 vv.page(addon.main);
