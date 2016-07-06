@@ -51,7 +51,7 @@ getPrevious = function(previous){
   var previous = getPrevious(sub.previous);
   var page = {
     id          : 'tele-sub',
-    title       : sub.src',
+    title       : sub.src,
     addon       : 'vv.pouya.telewebion',
     constructor : constructor,
     blur        : true,
