@@ -54,7 +54,6 @@ getPrevious = function(previous){
     title       : sub.title,
     addon       : 'vv.pouya.telewebion',
     constructor : constructor,
-    blur        : true,
     onCreate    : onSubCreate,
     previous    : previous
   }
@@ -74,7 +73,6 @@ onMainCreate = function(){
       title       : sub.title,
       addon       : 'vv.pouya.telewebion',
       constructor : constructor,
-      blur        : true,
       onCreate    : onSubCreate,
       previous    : previous
     }
@@ -102,7 +100,6 @@ addon.main = {
   title       : 'شبکه های ایران',
   addon       : 'vv.pouya.telewebion',
   constructor : constructor,
-  blur        : true,
   onCreate    : onMainCreate
 }
 
