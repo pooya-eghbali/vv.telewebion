@@ -103,7 +103,7 @@ addon.main = {
   addon       : 'vv.pouya.telewebion',
   constructor : constructor,
   blur        : true,
-  onCreate    : onCreate
+  onCreate    : onMainCreate
 }
 
 vv.page(addon.main);
