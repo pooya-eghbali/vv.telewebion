@@ -60,7 +60,7 @@ addon.createSubMenu = function(id, name) {
       $.getJSON('http://m.s1.telewebion.com/op/op?action=getChannelLinks&ChannelID='+id, function(res, err) { callback(null, res, token) })
     },
     function(links, token, callback) {
-      links = _.map(temp1, function(o) { o.name = name; return o });
+      links = _.map(links, function(o) { o.name = name; return o });
       var src = sub_page_tpl({links: links});
       var constructor  = function() { return src };
       var onMainCreate = function() {};
