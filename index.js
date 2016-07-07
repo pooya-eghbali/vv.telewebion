@@ -8,7 +8,7 @@ var main_page_tpl = '\
 var sub_page_tpl = '\
 <ul>\
   {{#each links}}\
-    <li><a href="#" class="tele-play-link" data-link="{{link}}"> {{name}} کیفیت {{bitrate}} </a></li>\
+    <li><a href="#" class="tele-play-link" data-link="{{link}}" data-name="{{name}}" data-bitrate="{{bitrate}}" data-id="{{id}}"> {{name}} کیفیت {{bitrate}} </a></li>\
   {{/each}}\
 </ul>\
 '
@@ -60,21 +60,36 @@ addon.createSubMenu = function(id, name) {
       $.getJSON('http://m.s1.telewebion.com/op/op?action=getChannelLinks&ChannelID='+id, function(res, err) { callback(null, res, token) })
     },
     function(links, token, callback) {
-      links = _.map(links, function(o) { o.name = name; return o });
+      links = _.map(links, function(o) { o.name = name; o.id = id; return o });
       var src = sub_page_tpl({links: links});
       var constructor  = function() { return src };
-      var onMainCreate = function() {};
+      var onMainCreate = function() {
+        $('.tele-play-link').off().click(function(){
+          var link = $(this).data("link");
+          var id   = $(this).data("id").toString() + $(this).data("bitrate");
+          var name = $(this).data("name");
+          vv.play({
+            id        : id,
+            url       : link,
+            type      : "application/x-mpegURL",
+            title     : name,
+            addon     : "vv.pouya.telewebion",
+            previous  : addon.current,
+          });
+        })
+      };
       
-      var page = {
+      addon.current = {
         id            : 'tele-sub',
         title         : name,
         addon         : 'vv.pouya.telewebion',
         constructor   : constructor,
         onAfterCreate : onMainCreate,
         rtl           : true,
+        previous      : addon.main,
       }
       
-      vv.page(page);
+      vv.page(addon.current);
     }
   ]);
 }
