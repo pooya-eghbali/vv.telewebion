@@ -30,9 +30,8 @@ async.waterfall([
     var constructor  = function() { return main_page };
     var onMainCreate = function() {
       $('.tele-submenu').off().click(function(){
-        var id = $(this).data(id);
+        var id = $(this).data("id");
         var name = $(this).text();
-        console.log(id);
         addon.createSubMenu(id, name);
       })
     };
@@ -51,16 +50,13 @@ async.waterfall([
 ])
 
 addon.createSubMenu = function(id, name) {
-  console.log(id);
   async.waterfall([
     function(callback) {
       // get security token (unnecessary!)
-      console.log(id);
       $.get('http://m.s1.telewebion.com/op/op?action=getSecurityToken', function(res, err) { callback(null, res) })
     },
     function(token, callback) {
       // get channel info
-      console.log(id);
       $.getJSON('http://m.s1.telewebion.com/op/op?action=getChannelLinks&ChannelID='+id, function(res, err) { callback(null, res, token) })
     },
     function(links, token, callback) {
