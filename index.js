@@ -51,29 +51,30 @@ async.waterfall([
 
 addon.createSubMenu = function(id, name) {
   async.waterfall([
-  function(callback) {
-    // get security token (unnecessary!)
-    $.get('http://m.s1.telewebion.com/op/op?action=getSecurityToken', function(res, err) { callback(null, res) })
-  },
-  function(token, callback) {
-    // get channel info
-    $.getJSON('http://m.s1.telewebion.com/op/op?action=getChannelLinks&ChannelID='+id, function(res, err) { callback(null, res, token) })
-  },
-  function(links, token, callback) {
-    links = _.map(temp1, function(o) { o.name = name; return o });
-    var src = sub_page_tpl({links: links});
-    var constructor  = function() { return src };
-    var onMainCreate = function() {};
-    
-    var page = {
-      id            : 'tele-sub',
-      title         : name,
-      addon         : 'vv.pouya.telewebion',
-      constructor   : constructor,
-      onAfterCreate : onMainCreate,
-      rtl           : true,
+    function(callback) {
+      // get security token (unnecessary!)
+      $.get('http://m.s1.telewebion.com/op/op?action=getSecurityToken', function(res, err) { callback(null, res) })
+    },
+    function(token, callback) {
+      // get channel info
+      $.getJSON('http://m.s1.telewebion.com/op/op?action=getChannelLinks&ChannelID='+id, function(res, err) { callback(null, res, token) })
+    },
+    function(links, token, callback) {
+      links = _.map(temp1, function(o) { o.name = name; return o });
+      var src = sub_page_tpl({links: links});
+      var constructor  = function() { return src };
+      var onMainCreate = function() {};
+      
+      var page = {
+        id            : 'tele-sub',
+        title         : name,
+        addon         : 'vv.pouya.telewebion',
+        constructor   : constructor,
+        onAfterCreate : onMainCreate,
+        rtl           : true,
+      }
+      
+      vv.page(page);
     }
-    
-    vv.page(page);
-  }
+  ]);
 }
