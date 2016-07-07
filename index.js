@@ -63,7 +63,7 @@ addon.createSubMenu = function(id, name) {
       links = _.map(links, function(o) { o.name = name; o.id = id; return o });
       var src = sub_page_tpl({links: links});
       var constructor  = function() { return src };
-      var onMainCreate = function() {
+      var onSubCreate = function() {
         $('.tele-play-link').off().click(function(){
           var link = $(this).data("link");
           var id   = $(this).data("id").toString() + $(this).data("bitrate");
@@ -85,7 +85,7 @@ addon.createSubMenu = function(id, name) {
         title         : name,
         addon         : 'vv.pouya.telewebion',
         constructor   : constructor,
-        onAfterCreate : onMainCreate,
+        onAfterCreate : onSubCreate,
         rtl           : true,
         previous      : addon.main,
       }
