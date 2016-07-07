@@ -75,6 +75,7 @@ addon.createSubMenu = function(id, name) {
             title     : name,
             addon     : "vv.pouya.telewebion",
             previous  : addon.current,
+            live      : true,
           });
         })
       };
